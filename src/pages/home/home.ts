@@ -1,19 +1,20 @@
 import {Component} from '@angular/core';
-
 import {NavController, Platform, AlertController} from 'ionic-angular';
+import {Transfer, TransferObject} from '@ionic-native/transfer';
+import {File} from '@ionic-native/file';
 
-import {File, Transfer} from 'ionic-native';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [Transfer, TransferObject, File]
 })
 
 export class HomePage {
 
   storageDirectory: string = '';
 
-  constructor(public navCtrl: NavController, public platform: Platform, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public platform: Platform, private transfer: Transfer, private file: File, public alertCtrl: AlertController) {
     this.platform.ready().then(() => {
       // make sure this is on a device, not an emulation (e.g. chrome tools device mode)
       if(!this.platform.is('cordova')) {
@@ -37,7 +38,8 @@ export class HomePage {
 
     this.platform.ready().then(() => {
 
-      const fileTransfer = new Transfer();
+      const fileTransfer: TransferObject = this.transfer.create();
+
       const imageLocation = `${cordova.file.applicationDirectory}www/assets/img/${image}`;
 
       fileTransfer.download(imageLocation, this.storageDirectory + image).then((entry) => {
@@ -68,7 +70,7 @@ export class HomePage {
 
   retrieveImage(image) {
 
-    File.checkFile(this.storageDirectory, image)
+    this.file.checkFile(this.storageDirectory, image)
       .then(() => {
 
         const alertSuccess = this.alertCtrl.create({

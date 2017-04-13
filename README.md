@@ -4,7 +4,12 @@
 
 A very simple file transfer example for Ionic 3 using TypeScript and the [Transfer](http://ionicframework.com/docs/native/transfer/) module from `ionic-native`.
 
-<img src="http://dsgriffin.github.io/images/ionic-2-file-transfer-example/results.png" width="675">
+<img src="http://dsgriffin.github.io/images/ionic-file-transfer-example/results.png" width="675">
+
+## Requirements
+
+* Either an iPhone or Android device (File Transfer will not work on an emulator)
+* If you're building for iOS, you'll need XCode. 
 
 ## Build
 
@@ -12,10 +17,8 @@ Clone the repository and follow the steps based on the platform of your device.
 
 #### iOS
 
-*Note*: building iOS requires a Mac OS.
-
 1. `npm install`
-2. `cordova platform install ios`
+2. `cordova platform add ios`
 3. `ionic build ios --prod`
 4. Connect your iOS device and run the application, either by
   1. Opening up the relevant `.xcodeproj` on `Xcode` and clicking the run button (making sure your device is selected)
@@ -24,7 +27,7 @@ Clone the repository and follow the steps based on the platform of your device.
 ### Android 
 
 1. `npm install`
-2. `cordova platform install android`
+2. `cordova platform add android`
 3. `ionic build android --prod`
 4. Connect your Android device and run the application with `ionic run android` (make sure USB debugging is enabled on your device)
 
